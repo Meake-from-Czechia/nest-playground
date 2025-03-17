@@ -1,30 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Seznam studentů</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <h2 class="mb-4">Seznam studentů</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Jméno</th>
+                            <th>Příjmení</th>
+                            <th>Akce</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <h2 class="mt-4">Přidat / Upravit studenta</h2>
+                <form class="mt-3">
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">Jméno</label>
+                        <input type="text" required class="form-control" id="firstName" placeholder="Zadejte jméno">
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Příjmení</label>
+                        <input type="text" required class="form-control" id="lastName" placeholder="Zadejte příjmení">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Uložit</button>
+                </form>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
-
 </body>
 </html>
