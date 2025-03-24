@@ -3,7 +3,7 @@ import { Student } from './student.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { StudentDto } from './student.dto';
-import {ClassService} from "../classes/class.service";
+import { ClassService } from '../classes/class.service';
 
 @Injectable()
 export class StudentsService {
@@ -14,7 +14,9 @@ export class StudentsService {
   ) {}
 
   async getStudents(): Promise<Student[]> {
-    return this.studentRepository.find();
+    return this.studentRepository.find({
+      relations: ['class'],
+    });
   }
 
   async getStudent(id: number): Promise<Student> {
@@ -22,9 +24,13 @@ export class StudentsService {
   }
 
   async createStudent(data: StudentDto): Promise<Student> {
-          return this.studentRepository.save(
-                  new Student(data.firstName, data.lastName, await this.classService.getClass(data.classId)),
-          );
+    return this.studentRepository.save(
+      new Student(
+        data.firstName,
+        data.lastName,
+        await this.classService.getClass(data.classId),
+      ),
+    );
   }
 
   async deleteStudent(id: number): Promise<void> {
@@ -35,6 +41,7 @@ export class StudentsService {
     const student = await this.studentRepository.findOneBy({ id: id });
     student.firstName = data.firstName;
     student.lastName = data.lastName;
+    student.class = await this.classService.getClass(data.classId);
     return this.studentRepository.save(student);
   }
 }

@@ -16,6 +16,7 @@
                         <tr>
                             <th>Jméno</th>
                             <th>Příjmení</th>
+                            <th>Třída</th>
                             <th>Akce</th>
                         </tr>
                     </thead>
@@ -34,11 +35,16 @@
                         <label for="lastName" class="form-label">Příjmení</label>
                         <input type="text" required class="form-control" id="lastName" placeholder="Zadejte příjmení">
                     </div>
+                    <div class="mb-3">
+                        <label for="classId" class="form-label">Třída</label>
+                        <select class="form-control" name="Select" id="classId"></select>
+                    </div>
                     <button type="submit" class="btn btn-primary">Uložit</button>
                 </form>
             </div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

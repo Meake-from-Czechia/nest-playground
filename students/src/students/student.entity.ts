@@ -10,7 +10,9 @@ export class Student {
   @Column()
   lastName: string;
 
-  @ManyToOne((type) => Class, (s) => s.students, { nullable: false })
+  @ManyToOne((type) => Class, (s) => s.students, {
+    nullable: false,
+  })
   class: Class;
 
   constructor(firstName: string, lastName: string, _class: Class) {
