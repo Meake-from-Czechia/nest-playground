@@ -25,8 +25,8 @@ export class StudentsService {
     );
   }
 
-  deleteStudent(id: number): void {
-    this.studentRepository.delete(id);
+  async deleteStudent(id: number): Promise<void> {
+    await this.studentRepository.delete(id);
   }
 
   async updateStudent(id: number, data: StudentDto): Promise<Student> {

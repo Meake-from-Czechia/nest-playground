@@ -32,8 +32,8 @@ export class StudentsController {
   }
 
   @Delete(':id')
-  deleteStudent(@Param('id') id: number): void {
-    this.studentsService.deleteStudent(id);
+  async deleteStudent(@Param('id') id: number): Promise<void> {
+    await this.studentsService.deleteStudent(id);
   }
 
   @Put(':id')
