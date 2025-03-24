@@ -3,26 +3,28 @@ import { Student } from './student.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { StudentDto } from './student.dto';
+import {ClassService} from "../classes/class.service";
 
 @Injectable()
 export class StudentsService {
   constructor(
     @InjectRepository(Student)
     private studentRepository: Repository<Student>,
+    private readonly classService: ClassService,
   ) {}
 
-  getStudents(): Promise<Student[]> {
+  async getStudents(): Promise<Student[]> {
     return this.studentRepository.find();
   }
 
-  getStudent(id: number): Promise<Student> {
+  async getStudent(id: number): Promise<Student> {
     return this.studentRepository.findOneBy({ id: id });
   }
 
-  createStudent(data: StudentDto): Promise<Student> {
-    return this.studentRepository.save(
-      new Student(data.firstName, data.lastName),
-    );
+  async createStudent(data: StudentDto): Promise<Student> {
+          return this.studentRepository.save(
+                  new Student(data.firstName, data.lastName, await this.classService.getClass(data.classId)),
+          );
   }
 
   async deleteStudent(id: number): Promise<void> {

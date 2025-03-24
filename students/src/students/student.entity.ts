@@ -1,17 +1,21 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Class } from '../classes/class.entity';
 
 @Entity()
-export class Student{
-    @PrimaryGeneratedColumn()
-    id: number;
-    @Column()
-    firstName: string;
-    @Column()
-    lastName: string;
+export class Student {
+  @PrimaryGeneratedColumn()
+  id: number;
+  @Column()
+  firstName: string;
+  @Column()
+  lastName: string;
 
-    constructor(firstName: string, lastName: string) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+  @ManyToOne((type) => Class, (s) => s.students, { nullable: false })
+  class: Class;
 
+  constructor(firstName: string, lastName: string, _class: Class) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.class = _class;
+  }
 }
